@@ -1,0 +1,33 @@
+#container1 {
+    padding: 100px;
+    background-color: gray;
+    color: white;
+}
+#container2 {
+    padding: 100px;
+    background-color: blue;
+    color: white;
+}
+#list1 {
+    color: blue;
+}
+#container3 {
+    padding: 100px;
+    background-color: pink;
+    color: black;
+}
+#list2 {
+    color: pink;
+}
+#container4 {
+    padding: 100px;
+    background-color: lightgreen;
+    color: black;
+}
+#list3 {
+    color: lightgreen;
+}
+.footer {
+    background-color: black;
+    padding: 25px;
+}
