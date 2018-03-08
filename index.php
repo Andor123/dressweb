@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">DressWeb</a>
+        <a class="navbar-brand" href="index.php">DressWeb</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbar" aria-controls="navbar"
                 aria-expanded="false" aria-label="Toggle Navigation">
@@ -22,23 +25,41 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Men's</a>
+                    <a class="nav-link" href="mens.php">Men's</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Women's</a>
+                    <a class="nav-link" href="womens.php">Women's</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kids</a>
+                    <a class="nav-link" href="kids.php">Kids</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="signup.html">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-            </ul>
+            <?php
+            if (!isset($_SESSION["user"])) {
+                ?>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+                <?php
+            }
+            if (isset($_SESSION["user"])) {
+                ?>
+                <ul class="navbar-nav ml-auto">
+                    <span class="navbar-text">
+                        Welcome, <?php echo $_SESSION["user"] ?>
+                    </span>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                </ul>
+                <?php
+            }
+            ?>
         </div>
     </nav>
 </header>
@@ -94,7 +115,7 @@
     </div>
 </footer>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/popper.js/dist/popper.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
