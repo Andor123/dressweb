@@ -76,7 +76,7 @@ include "config.php";
         <h1 class="h1">Kids Clothes</h1>
         <div class="container-fluid">
             <?php
-            $sql = "SELECT image, name, price FROM clothes WHERE category_id = 3";
+            $sql = "SELECT id, image, name, price FROM clothes WHERE category_id = 3";
             $result = mysqli_query($connection, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -84,10 +84,13 @@ include "config.php";
                     ?>
                     <div class="row">
                         <div class="col">
-                            <img class="img-fluid" src="images/<?php echo $row["image"]; ?>" alt="image">
-                            <p class="lead"><?php echo $row["name"] ?></p>
-                            <p class="lead">€<?php echo $row["price"] ?></p>
-                            <a class="btn btn-primary" href="#">Buy</a>
+                            <form method="post" action="buy.php" id="form" name="form">
+                                <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
+                                <img class="img-fluid" src="images/<?php echo $row["image"]; ?>" alt="image">
+                                <p class="lead"><?php echo $row["name"] ?></p>
+                                <p class="lead">€<?php echo $row["price"] ?></p>
+                                <button type="submit" class="btn btn-primary" id="a3">Buy</button>
+                            </form>
                         </div>
                     </div>
                     <br>

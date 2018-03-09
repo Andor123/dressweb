@@ -31,3 +31,43 @@
     background-color: black;
     padding: 25px;
 }
+#a1 {
+    background-color: blue;
+    color: white;
+    border-color: white;
+}
+#a1:hover {
+    background-color: white;
+    color: blue;
+    border-color: blue;
+}
+#a2 {
+    background-color: pink;
+    color: black;
+    border-color: black;
+}
+#a2:hover {
+    background-color: black;
+    color: pink;
+    border-color: pink;
+}
+#a3 {
+    background-color: lightgreen;
+    color: black;
+    border-color: black;
+}
+#a3:hover {
+    background-color: black;
+    color: lightgreen;
+    border-color: lightgreen;
+}
+.a4 {
+    background-color: gray;
+    color: white;
+    border-color: white;
+}
+.a4:hover {
+    background-color: white;
+    color: gray;
+    border-color: gray;
+}

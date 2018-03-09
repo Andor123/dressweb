@@ -28,7 +28,7 @@ include "config.php";
                 <li class="nav-item">
                     <a class="nav-link" href="mens.php">Men's</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="womens.php">Women's</a>
                 </li>
                 <li class="nav-item">
@@ -64,42 +64,34 @@ include "config.php";
         </div>
     </nav>
 </header>
-<section class="container-fluid text-center" id="container3">
+<section class="container-fluid text-center" id="container1">
     <?php
-    if (!isset($_SESSION["user"])) {
+    if (!isset($_SESSION["user"]) && !isset($_SESSION["id"])) {
         ?>
         <h1 class="h1">Please sign up or login to your account.</h1>
         <?php
     }
-    if (isset($_SESSION["user"])) {
-        ?>
-        <h1 class="h1">Women's Clothes</h1>
-        <div class="container-fluid">
-            <?php
-            $sql = "SELECT id, image, name, price FROM clothes WHERE category_id = 2";
-            $result = mysqli_query($connection, $sql);
+    if (isset($_SESSION["user"]) && isset($_SESSION["id"])) {
+        $id = $_SESSION["id"];
 
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    ?>
-                    <div class="row">
-                        <div class="col">
-                            <form method="post" action="buy.php" id="form" name="form">
-                                <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
-                                <img class="img-fluid" src="images/<?php echo $row["image"]; ?>" alt="image">
-                                <p class="lead"><?php echo $row["name"] ?></p>
-                                <p class="lead">€<?php echo $row["price"] ?></p>
-                                <button type="submit" class="btn btn-primary" id="a2">Buy</button>
-                            </form>
-                        </div>
-                    </div>
-                    <br>
-                    <?php
-                }
+        $sql = "SELECT id, name, price FROM clothes WHERE id = '$id'";
+        $result = mysqli_query($connection, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <form method="post" action="shop.php" name="form" id="form">
+                    <p class="lead">The following product is in the basket:</p>
+                    <p class="lead"><?php echo $row["name"] ?></p>
+                    <p class="lead">Price: €<?php echo $row["price"] ?></p>
+                    <p class="lead">Do you want to buy it?</p>
+                    <button type="submit" class="btn btn-primary a4">Yes</button>
+                </form>
+                <br>
+                <a class="btn btn-primary a4" href="unset.php">No</a>
+                <?php
             }
-            ?>
-        </div>
-        <?php
+        }
     }
     ?>
 </section>
