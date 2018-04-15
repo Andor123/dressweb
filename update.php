@@ -100,6 +100,8 @@ include "config.php";
             <input type="text" class="form-control" name="image" id="image" placeholder="Image" required><br>
             <label for="name" class="sr-only">Name:</label>
             <textarea class="form-control" name="name" id="name" placeholder="Name" required></textarea><br>
+            <label for="size" class="sr-only">Size:</label>
+            <input type="text" class="form-control" name="size" id="size" placeholder="Size" required><br>
             <label for="price" class="sr-only">Price:</label>
             <input type="text" class="form-control" name="price" id="price" placeholder="Price" required><br>
             <button id="button" class="btn btn-lg btn-primary" type="submit">Update</button>

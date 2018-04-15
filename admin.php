@@ -80,10 +80,11 @@ include 'config.php';
                     <th>Category ID</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>Size</th>
                     <th>Price</th>
                 </tr>
                 <?php
-                $sql = "SELECT id, category_id, image, name, price FROM clothes";
+                $sql = "SELECT id, category_id, image, name, size, price FROM clothes";
                 $result = mysqli_query($connection, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -94,6 +95,7 @@ include 'config.php';
                             <td><?php echo $row["category_id"] ?></td>
                             <td><img src="images/<?php echo $row["image"]; ?>" alt="image"></td>
                             <td><?php echo $row["name"]; ?></td>
+                            <td><?php echo $row["size"]; ?></td>
                             <td><?php echo $row["price"]; ?></td>
                         </tr>
                         <?php

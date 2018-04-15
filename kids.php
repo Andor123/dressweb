@@ -76,9 +76,38 @@ include "config.php";
         <h1 class="h1">Kids Clothes</h1>
         <div class="container-fluid">
             <?php
-            $sql = "SELECT id, image, name, price FROM clothes WHERE category_id = 3";
-            $result = mysqli_query($connection, $sql);
-
+            if (!isset($_SESSION["size"])) {
+                ?>
+                <h2 class="h2">Filter</h2>
+                <form method="post" action="filter3.php" id="filter" name="filter">
+                    <label for="size">Size:</label><br>
+                    <select name="size" id="size" class="form-control">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="XXXL">XXXL</option>
+                    </select><br>
+                    <button type="submit" class="btn btn-primary" id="a3">Sort</button>
+                </form><br>
+                <?php
+            }
+            if (isset($_SESSION["size"])) {
+                ?>
+                <a class="btn btn-primary" id="a3" href="unset_filter3.php">Delete Sort</a><br><br>
+                <?php
+            }
+            if (!isset($_SESSION["size"])) {
+                $sql = "SELECT id, image, name, price FROM clothes WHERE category_id = 3";
+                $result = mysqli_query($connection, $sql);
+            }
+            if (isset($_SESSION["size"])) {
+                $size = $_SESSION["size"];
+                $sql2 = "SELECT id, image, name, price FROM clothes WHERE category_id = 3 AND size = '$size'";
+                $result = mysqli_query($connection, $sql2);
+            }
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     ?>
